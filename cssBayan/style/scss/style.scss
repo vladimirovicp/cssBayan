@@ -1,6 +1,6 @@
-*,
-*::before,
-*::after {
+$img_width: 25rem;
+
+*{
   box-sizing: border-box;
 }
 
@@ -60,7 +60,7 @@ body{
   &__ico{
     width: 2rem;
     height: 2rem;
-    opacity: 0;
+    //opacity: 0;
     transition: opacity .5s ease;
     margin-right: 1rem;
 
@@ -80,7 +80,7 @@ body{
     img{
       display: block;
       margin: 0 auto;
-      width: 25rem;
+      width: $img_width;
       height: 0;
       opacity: 0;
       transition: height 0.5s ease-in-out, opacity 0.5s ease-in-out;
@@ -88,7 +88,8 @@ body{
   }
 
   &__checkbox{
-    display: none;
+    height: 0;
+    opacity: 0;
     &:checked {
       & ~ label .accordion__title{
         .accordion__ico{
@@ -101,10 +102,10 @@ body{
       & ~ label .accordion__content{
         margin-top: 2rem;
         transition: height 5s;
-        max-height: 25rem;
+        max-height: $img_width;
 
         img{
-          height: 25rem;
+          height: $img_width;
           opacity: 1;
         }
       }
@@ -127,14 +128,29 @@ body{
 
 @media (hover: hover){
   .accordion {
+
+    &__title{
+      color: black;
+      transition: color .5s ease-in-out;
+    }
     &:hover {
+      .accordion__title{
+        color: #0159d9;
+      }
       .accordion__ico {
         opacity: 1;
       }
+
     }
 
     &__item{
+      .accordion__ico{
+        opacity: 0;
+      }
       &:hover{
+        .accordion__title{
+          color: black;
+        }
         .accordion__ico{
           img{
             transform: rotate(45deg);
@@ -144,9 +160,9 @@ body{
         .accordion__content{
           margin-top: 2rem;
           transition: max-height .5s;
-          max-height: 25rem;
+          max-height: $img_width;
           img{
-            height: 25rem;
+            height: $img_width;
             opacity: 1;
           }
         }
@@ -177,6 +193,7 @@ body{
     &__title{
       font-size: 2.5rem;
       padding: 2rem 0 0 1rem;
+      color: #0159d9;
     }
 
     &__ico{
@@ -184,6 +201,16 @@ body{
       height: 3rem;
       opacity: 1;
     }
+
+    &__checkbox{
+      &:checked {
+        & ~ label .accordion__title{
+          color: black;
+        }
+
+      }
+    }
+
   }
 }
 
